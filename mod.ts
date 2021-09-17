@@ -18,6 +18,7 @@ let boiler = `<!DOCTYPE html>
       position: absolute;
       margin: 0px;
       padding: 0px;
+      border: 0.5px solid black;
       width: ${pxSize}px;
       height: ${pxSize}px;
     }
@@ -36,12 +37,16 @@ for (let i = 0; i < image.length; i += additive) {
   if ((i / additive) % width === 0) {
     y += 1;
   }
-  const r = image[i];
-  const g = image[i + 1];
-  const b = image[i + 2];
+  let r = image[i];
+  let g = image[i + 1];
+  let b = image[i + 2];
   const a = additive === 4 ? image[i + 4] : undefined;
   // deno-fmt-ignore
-  if ((r === 255 && g === 255 && b === 255 && a === 255) || (r === 0 && g === 0 && b === 0)) continue;
+  if (r === 0 && g === 0 && b === 0) {
+    r = 255;
+    g = 255;
+    b = 255;
+  }
   // deno-fmt-ignore
   const div = `<div style="left:${i / additive % width * pxSize}px;top:${y * pxSize}px;background-color:${rgba(r, g, b, a)}"></div>\n`;
   boiler += div;

@@ -24,7 +24,8 @@ let boiler = `<!DOCTYPE html>
   </style>
 </head>
 
-<body>`;
+<body>
+`;
 
 let additive = 4;
 let y = 0;
@@ -42,7 +43,7 @@ for (let i = 0; i < image.length; i += additive) {
   // deno-fmt-ignore
   if ((r === 255 && g === 255 && b === 255 && a === 255) || (r === 0 && g === 0 && b === 0)) continue;
   // deno-fmt-ignore
-  const div = `<div style="left:${i / additive % width * pxSize}px;top:${y * pxSize}px;background-color:${rgba(r, g, b, a)}"></div>`;
+  const div = `<div style="left:${i / additive % width * pxSize}px;top:${y * pxSize}px;background-color:${rgba(r, g, b, a)}"></div>\n`;
   boiler += div;
 }
 

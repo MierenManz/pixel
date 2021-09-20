@@ -2,7 +2,7 @@ import { decode } from "https://deno.land/x/pngs@0.1.1/mod.ts";
 
 const img = await Deno.readFile(Deno.args[0]);
 const pxSize = parseInt(Deno.args[1]) ?? 1;
-
+const offset = parseInt(Deno.args[2]) ?? 0;
 const { width, image, colorType } = decode(img);
 
 let boiler = `<!DOCTYPE html>
@@ -14,6 +14,10 @@ let boiler = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style>
+    body {
+      padding: 0;
+      margin: 0;
+    }
     div {
       position: absolute;
       margin: 0px;
@@ -48,7 +52,7 @@ for (let i = 0; i < image.length; i += additive) {
     b = 255;
   }
   // deno-fmt-ignore
-  const div = `<div style="left:${i / additive % width * pxSize}px;top:${y * pxSize}px;background-color:${rgba(r, g, b, a)}"></div>\n`;
+  const div = `<div style="left:${i / additive % width * pxSize + offset}px;top:${y * pxSize + offset}px;background-color:${rgba(r, g, b, a)}"></div>\n`;
   boiler += div;
 }
 

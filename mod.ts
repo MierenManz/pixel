@@ -18,7 +18,7 @@ let boiler = `<!DOCTYPE html>
       position: absolute;
       margin: 0px;
       padding: 0px;
-      border: 0.5px solid black;
+      border: 1px solid black;
       width: ${pxSize}px;
       height: ${pxSize}px;
     }
